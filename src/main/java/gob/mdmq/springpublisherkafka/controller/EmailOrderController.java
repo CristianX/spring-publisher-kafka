@@ -27,14 +27,13 @@ public class EmailOrderController {
 
     @PostMapping
     public String createEmailOrder(@RequestBody BodyCorreo emailBody) throws JsonProcessingException {
-        Correo email;
-
         log.info("Create email recived {}", emailBody.getDestinatarios().get(1));
 
         for (int i = 0; i < emailBody.getDestinatarios().size(); i++) {
             log.info(emailBody.getDestinatarios().get(i));
             emailOrderService
-                    .createEmailOrder(email = new Correo(emailBody.getIdSistema(), emailBody.getRemitente(), emailBody.getDestinatarios().get(i),
+                    .createEmailOrder(new Correo(emailBody.getIdSistema(), emailBody.getRemitente(),
+                            emailBody.getDestinatarios().get(i),
                             emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto()));
         }
 
