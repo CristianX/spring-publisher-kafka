@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import gob.mdmq.springpublisherkafka.model.Correo;
-import gob.mdmq.springpublisherkafka.service.FoodOrderService;
+import gob.mdmq.springpublisherkafka.service.EmailOrderService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/order")
-public class FoodOrderController {
+@RequestMapping("/send-email")
+public class EmailOrderController {
 
-    private final FoodOrderService foodOrderService;
+    private final EmailOrderService foodOrderService;
 
     @Autowired
-    public FoodOrderController(FoodOrderService foodOrderService) {
+    public EmailOrderController(EmailOrderService foodOrderService) {
         this.foodOrderService = foodOrderService;
     }
 
     @PostMapping
     public String createFoodOrder(@RequestBody Correo foodOrder) throws JsonProcessingException {
-        log.info("Create food order recived");
+        log.info("Create email recived");
         return foodOrderService.createFoodOrder(foodOrder);
     }
 

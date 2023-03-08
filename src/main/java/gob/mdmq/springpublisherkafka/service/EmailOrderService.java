@@ -11,12 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class FoodOrderService {
+public class EmailOrderService {
 
     private Producer producer;
 
     @Autowired
-    public FoodOrderService(Producer producer) {
+    public EmailOrderService(Producer producer) {
         this.producer = producer;
     }
 

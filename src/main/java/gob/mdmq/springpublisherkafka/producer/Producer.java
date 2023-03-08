@@ -31,7 +31,7 @@ public class Producer {
         String orderAsMessage = objectMapper.writeValueAsString(foodOrder);
         kafkaTemplate.send(foodOrder.getIdSistema(), orderAsMessage);
 
-        log.info("food order producer {}", orderAsMessage);
+        log.info("email order producer {}", orderAsMessage);
 
         return "message sent";
     }
