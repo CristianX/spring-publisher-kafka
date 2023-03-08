@@ -1,4 +1,4 @@
-package gob.mdmq.springpublisherkafka.producer;
+package gob.mdmq.springpublisherkafka.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
