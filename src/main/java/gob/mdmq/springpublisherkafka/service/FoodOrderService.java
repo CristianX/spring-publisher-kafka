@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import gob.mdmq.springpublisherkafka.model.FoodOrder;
+import gob.mdmq.springpublisherkafka.model.Correo;
 import gob.mdmq.springpublisherkafka.producer.Producer;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +20,7 @@ public class FoodOrderService {
         this.producer = producer;
     }
 
-    public String createFoodOrder(FoodOrder foodOrder) throws JsonProcessingException {
+    public String createFoodOrder(Correo foodOrder) throws JsonProcessingException {
         return producer.sendMessage(foodOrder);
     }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gob.mdmq.springpublisherkafka.model.FoodOrder;
+import gob.mdmq.springpublisherkafka.model.Correo;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -27,9 +27,9 @@ public class Producer {
         this.objectMapper = objectMapper;
     }
 
-    public String sendMessage(FoodOrder foodOrder) throws JsonProcessingException {
+    public String sendMessage(Correo foodOrder) throws JsonProcessingException {
         String orderAsMessage = objectMapper.writeValueAsString(foodOrder);
-        kafkaTemplate.send(orderTopic, orderAsMessage);
+        kafkaTemplate.send(foodOrder.getIdSistema(), orderAsMessage);
 
         log.info("food order producer {}", orderAsMessage);
 

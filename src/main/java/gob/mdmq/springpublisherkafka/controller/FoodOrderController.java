@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import gob.mdmq.springpublisherkafka.model.FoodOrder;
+import gob.mdmq.springpublisherkafka.model.Correo;
 import gob.mdmq.springpublisherkafka.service.FoodOrderService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +25,7 @@ public class FoodOrderController {
     }
 
     @PostMapping
-    public String createFoodOrder(@RequestBody FoodOrder foodOrder) throws JsonProcessingException {
+    public String createFoodOrder(@RequestBody Correo foodOrder) throws JsonProcessingException {
         log.info("Create food order recived");
         return foodOrderService.createFoodOrder(foodOrder);
     }

@@ -2,4 +2,4 @@ server:
   port: 8080
 
 topic:
-  name: t.food.order
+  name: t.cola.inicial
