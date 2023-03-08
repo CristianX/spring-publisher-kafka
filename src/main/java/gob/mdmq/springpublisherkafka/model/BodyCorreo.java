@@ -7,12 +7,13 @@ import lombok.Value;
 
 @Data
 @Value
-public class Correo {
-
+public class BodyCorreo {
     String idSistema;
     String remitente;
-    String destinatarios;
+    List<String> destinatarios;
     String asunto;
     String mensaje;
+    // List<String> copia;
+    // List<String> copiaOculta;
     List<String> adjunto;
 }

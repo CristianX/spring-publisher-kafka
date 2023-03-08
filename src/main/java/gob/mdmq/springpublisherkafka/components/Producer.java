@@ -3,6 +3,8 @@ package gob.mdmq.springpublisherkafka.components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,9 +29,9 @@ public class Producer {
         this.objectMapper = objectMapper;
     }
 
-    public String sendMessage(Correo foodOrder) throws JsonProcessingException {
-        String orderAsMessage = objectMapper.writeValueAsString(foodOrder);
-        kafkaTemplate.send(foodOrder.getIdSistema(), orderAsMessage);
+    public String sendMessage(Correo email) throws JsonProcessingException {
+        String orderAsMessage = objectMapper.writeValueAsString(email);
+        kafkaTemplate.send(email.getIdSistema(), orderAsMessage);
 
         log.info("email order producer {}", orderAsMessage);
 

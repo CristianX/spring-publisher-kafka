@@ -20,8 +20,8 @@ public class EmailOrderService {
         this.producer = producer;
     }
 
-    public String createFoodOrder(Correo foodOrder) throws JsonProcessingException {
-        return producer.sendMessage(foodOrder);
+    public String createEmailOrder(Correo emailOrder) throws JsonProcessingException {
+        return producer.sendMessage(emailOrder);
     }
 
 }
