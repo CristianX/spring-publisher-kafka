@@ -38,7 +38,7 @@ public class EmailOrderController {
         }
 
         // return foodOrderService.createFoodOrder(email);
-        return "prueba";
+        return "Mensajes enviados";
     }
 
 }
