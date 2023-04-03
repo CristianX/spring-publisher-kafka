@@ -7,7 +7,7 @@ import lombok.Value;
 
 @Data
 @Value
-public class Correo {
+public class CorreoBDD {
 
     String idSistema;
     String remitente;
@@ -15,5 +15,5 @@ public class Correo {
     String asunto;
     String mensaje;
     List<String> adjunto;
-
+    Boolean enviado;
 }

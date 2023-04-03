@@ -3,4 +3,9 @@ server:
   address: 0.0.0.0
 
 topic:
-  name: t.cola.inicial
+  name:
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:Rm3MpB4vR5AXPL@localhost:6400/MDMQ_NOTIFICACIONES_CORREO?authSource=admin

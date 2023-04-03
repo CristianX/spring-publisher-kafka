@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import gob.mdmq.springpublisherkafka.model.BodyCorreo;
 import gob.mdmq.springpublisherkafka.model.Correo;
+import gob.mdmq.springpublisherkafka.model.CorreoBDD;
 import gob.mdmq.springpublisherkafka.service.EmailOrderService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,14 +32,24 @@ public class EmailOrderController {
 
         for (int i = 0; i < emailBody.getDestinatarios().size(); i++) {
             log.info(emailBody.getDestinatarios().get(i));
-            emailOrderService
-                    .createEmailOrder(new Correo(emailBody.getIdSistema(), emailBody.getRemitente(),
-                            emailBody.getDestinatarios().get(i),
-                            emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto()));
+
+            try {
+                emailOrderService
+                        .createEmailOrder(new Correo(emailBody.getIdSistema(), emailBody.getRemitente(),
+                                emailBody.getDestinatarios().get(i),
+                                emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto()));
+                emailOrderService.save(new CorreoBDD(emailBody.getIdSistema(), emailBody.getRemitente(),
+                        emailBody.getDestinatarios().get(i),
+                        emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto(), false));
+            } catch (Exception e) {
+                return "Error al enviar el mensaje";
+            }
+
         }
+        return "Mensaje enviado";
 
         // return foodOrderService.createFoodOrder(email);
-        return "Mensajes enviados";
+
     }
 
 }
