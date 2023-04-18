@@ -28,19 +28,20 @@ public class EmailOrderController {
 
     @PostMapping
     public String createEmailOrder(@RequestBody BodyCorreo emailBody) throws JsonProcessingException {
-        log.info("Create email recived {}", emailBody.getDestinatarios().get(1));
 
         for (int i = 0; i < emailBody.getDestinatarios().size(); i++) {
             log.info(emailBody.getDestinatarios().get(i));
 
             try {
+                emailOrderService.save(new CorreoBDD(emailBody.getIdSistema(), emailBody.getRemitente(),
+                        emailBody.getDestinatarios().get(i),
+                        emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto(), false));
+
                 emailOrderService
                         .createEmailOrder(new Correo(emailBody.getIdSistema(), emailBody.getRemitente(),
                                 emailBody.getDestinatarios().get(i),
                                 emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto()));
-                emailOrderService.save(new CorreoBDD(emailBody.getIdSistema(), emailBody.getRemitente(),
-                        emailBody.getDestinatarios().get(i),
-                        emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto(), false));
+
             } catch (Exception e) {
                 return "Error al enviar el mensaje";
             }
