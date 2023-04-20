@@ -31,8 +31,8 @@ public class EmailOrderService {
         return producer.sendMessage(emailOrder);
     }
 
-    public void save(CorreoBDD correo) {
-        correoRepository.save(correo);
+    public CorreoBDD save(CorreoBDD correo) {
+        return correoRepository.save(correo);
     }
 
     public List<CorreoBDD> findAll() {

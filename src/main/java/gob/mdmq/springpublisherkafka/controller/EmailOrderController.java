@@ -1,5 +1,6 @@
 package gob.mdmq.springpublisherkafka.controller;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,12 +34,16 @@ public class EmailOrderController {
             log.info(emailBody.getDestinatarios().get(i));
 
             try {
-                emailOrderService.save(new CorreoBDD(emailBody.getIdSistema(), emailBody.getRemitente(),
-                        emailBody.getDestinatarios().get(i),
-                        emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto(), false));
+                String id = new ObjectId().toString();
+                CorreoBDD respuesta = emailOrderService
+                        .save(new CorreoBDD(id, emailBody.getIdSistema(),
+                                emailBody.getRemitente(),
+                                emailBody.getDestinatarios().get(i),
+                                emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto(), false));
 
+                log.info("INFORMACION RESPUESTA: " + respuesta);
                 emailOrderService
-                        .createEmailOrder(new Correo(emailBody.getIdSistema(), emailBody.getRemitente(),
+                        .createEmailOrder(new Correo(id, emailBody.getIdSistema(), emailBody.getRemitente(),
                                 emailBody.getDestinatarios().get(i),
                                 emailBody.getAsunto(), emailBody.getMensaje(), emailBody.getAdjunto()));
 

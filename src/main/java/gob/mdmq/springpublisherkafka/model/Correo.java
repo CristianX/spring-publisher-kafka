@@ -8,7 +8,7 @@ import lombok.Value;
 @Data
 @Value
 public class Correo {
-
+    String id;
     String idSistema;
     String remitente;
     String destinatarios;
